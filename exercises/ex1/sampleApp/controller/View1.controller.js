@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/base/Log"],function(e,n){"use strict";return e.extend("sap.btp.sapui5.controller.View1",{onInit:function(){},onBeforeRendering:function(){window.message="Another random log message";n.info(window.message)},onAfterRendering:function(){debugger}})});

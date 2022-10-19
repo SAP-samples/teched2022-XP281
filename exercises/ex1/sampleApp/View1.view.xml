@@ -1,0 +1,14 @@
+<mvc:View
+    controllerName="sap.btp.sapui5.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<MessagePage showHeader="false" description="Welcome to our session" text="SL Takt Review: 06.10.2022!" icon="sap-icon://cloud"/>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
