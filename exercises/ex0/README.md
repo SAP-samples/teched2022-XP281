@@ -1,24 +1,18 @@
-# Level 1 Heading
+# Build a simple cloud application on SAP Business Applicaiton Studio
 
-In this exercise, you will...
+In this exercise, you will learn how to create an SAP Business Application Studio dev space, a preconfigured environment with the required tools and extensions tailored for a specific business scenario.
 
-## Level 2 Heading
+## Create a Dev Space for SAP Fiori Apps
 
 After completing these steps you will have....
 
-1.	Click here.
-<br>![](/exercises/ex0/images/00_00_0010.png)
+1.	Access SAP Business Application Studio.
+In a trial account, launch the SAP BTP trial landing page, and choose SAP Business Application Studio.
+<br>![](/exercises/ex0/images/ex0_1.png)
 
-2.	Insert this code.
-``` abap
- DATA(params) = request->get_form_fields(  ).
- READ TABLE params REFERENCE INTO DATA(param) WITH KEY name = 'cmd'.
-  IF sy-subrc <> 0.
-    response->set_status( i_code = 400
-                     i_reason = 'Bad request').
-    RETURN.
-  ENDIF.
-```
+
+2. In a productive account (as well as a trial account), access SAP BTP cockpit, navigate to the subaccount with SAP Business Application Studio subscription, click Subscriptions and Instances, and click SAP Business Application Studio.
+<br>![](/exercises/ex0/images/ex0_2.png)
 
 ## Summary
 
