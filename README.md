@@ -22,7 +22,7 @@ The requirements to follow the exercises in this repository are:
 
 ## Exercises
 
-Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
+During the workshop itself there will be two main excercises related to the monitoring and automated operatins: one covering a cloud application and another one with a focus towards HANA Cloud . Furher details are ....  directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
 
 - [Getting Started](exercises/ex0/)
 - [Exercise 1 - First Exercise Description](exercises/ex1/)
