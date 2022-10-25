@@ -11,10 +11,13 @@ You have covered the following tutorials:
 # Implementation
 
 A SAP HANA Cloud database or a data lake Relational Engine instance have a set of built-in alerts that when triggered, are sent to the SAP Alert Notification Service (ANS). This service, in addition to being able to forward details of the alert to various channels (email, Microsoft Teams, Slack, etc.), can trigger a SAP Automation Pilot command. 
+<br>![](/exercises/ex1/images/02_01.png)
 
+For this worksho we'll receive an alert from the Alert Notification service about `HDB Long Running Statement`
+<br>![](/exercises/ex1/images/02_02.png)
 
+Then the Automation Pilot is to get further details from the HANA Cloud by execute SQL Commandsand (by `QueryDB`)  and provide further detaiils back to the Alert Notification service. 
 
-## Summary
+<br>![](/exercises/ex1/images/02_03.png)
 
-You've now ...
-
+<br>![](/exercises/ex1/images/02_04.png)
