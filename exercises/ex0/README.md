@@ -115,4 +115,4 @@ Well done - you will be landing to your app home page!
 ## Summary
 
 Now that you have the cloud application in place we can proceed to the next step.
-Continue to - [Exercise 1 - Exercise 1 Description](../ex1/README.md)
+Continue to - [Exercise 2 - Cloud Application Monitoring](../ex1/README.md)
