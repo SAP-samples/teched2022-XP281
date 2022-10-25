@@ -24,14 +24,9 @@ The requirements to follow the exercises in this repository are:
 
 During the workshop itself there will be two main excercises related to the monitoring and automated operatins: one covering a cloud application and another one with a focus towards HANA Cloud . Furher details are provided by linking to the specific exercise pages as it follows:
 
-- [Starting Point: Build a simple cloud application on SAP Business Applicaiton Studio](exercises/ex0/)
-- [Exercise 1 - First Exercise Description](exercises/ex1/)
-    - [Exercise 1.1 - Exercise 1 Sub Exercise 1 Description](exercises/ex1#exercise-11-sub-exercise-1-description)
-    - [Exercise 1.2 - Exercise 1 Sub Exercise 2 Description](exercises/ex1#exercise-12-sub-exercise-2-description)
-- [Exercise 2 - Second Exercise Description](exercises/ex2/)
-    - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
-    - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
-
+- [Exercise 1: Build a simple cloud application on SAP Business Applicaiton Studio](exercises/ex0/)
+- [Exercise 2 - Cloud Application Monitoring](exercises/ex1/)
+- [Exercise 3 - HANA Cloud monitoring and automated remediation](exercises/ex1/)
 
 ## How to obtain support
 
