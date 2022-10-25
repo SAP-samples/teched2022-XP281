@@ -26,7 +26,7 @@ During the workshop itself there will be two main excercises related to the moni
 
 - [Exercise 1 - Build a Cloud UI5 Application on SAP Business Applicaiton Studio](exercises/ex0/)
 - [Exercise 2 - Cloud Application Monitoring with Alert Notificaiton service and Automation Pilot](exercises/ex1/)
-- [Exercise 3 - HANA Cloud monitoring and automated remediation](exercises/ex1/)
+- [Exercise 3 - HANA Cloud monitoring and automated remediation](exercises/ex2/)
 
 ## How to obtain support
 
