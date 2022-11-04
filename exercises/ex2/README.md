@@ -82,7 +82,8 @@ There will be two possible automated actions initiated by the Automation Pilot. 
 
 _**NOTE:** for further reference please find out [this tutorial prepared by Dan van Leeuwen](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html)._
 
-Then the Automation Pilot is to get further details from the HANA Cloud by execute SQL Commandsand (by `QueryDB`)  and provide further detaiils back to the Alert Notification service. 
+1. Automated action #1: 
+SAP Automation Pilot is to get further details about the long-running statment from the HANA Cloud by execute SQL Commandsand (by `QueryDB`)  and provide further detaiils back to the Alert Notification service. 
 
 <br>![](/exercises/ex2/images/02_03.png)
 
