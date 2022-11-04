@@ -105,6 +105,7 @@ Plus we can specify the values for the SQL Statement:
 <br>![](/exercises/ex2/images/02_14.png)
 
 _Expected result_
+
 The outup (as a result) is further processed and forward to the Alert Notification service so the Ops Team can automatically collect the needed information needed for debugging and further investigations.
 
 
@@ -116,4 +117,5 @@ ALTER SYSTEM DISCONNECT SESSION '201939';
 ```
 
 _Expected result_
+
 The long running statment gets terminated automatically and there's no further system degradation caused on it. 
