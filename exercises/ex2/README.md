@@ -82,7 +82,7 @@ There will be two possible automated actions initiated by the Automation Pilot. 
 
 _**NOTE:** for further reference please find out [this tutorial prepared by Dan van Leeuwen](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html)._
 
-**(1) Automated action #1:** Collect data about long-running statment
+**Automated action #1:** Collect data about long-running statment
 We are going to use the SQL Plan Cach in HANA Cloud so that SAP Automation Pilot is to get further details about the long-running statment by performing a query using the `ExecuteHanaCloudSqlStatement` command and provide further detaiils back to the Alert Notification service. 
 
 The query DB will be based on the `STATEMENT_HASH` and shall look like this one: 
@@ -104,15 +104,16 @@ This statement has been running for 281 seconds, Statment Hash: bcd01a3e39ba4a82
 Plus we can specify the values for the SQL Statement: 
 <br>![](/exercises/ex2/images/02_14.png)
 
-**Expected result:**
-
+_Expected result_
 The outup (as a result) is further processed and forward to the Alert Notification service so the Ops Team can automatically collect the needed information needed for debugging and further investigations.
 
 
-**(1) Automated action #2:** Collect data about long-running statment
+**Automated action #2:** Disconnecting the session of a long-running statment
+Following the same approach as described in Automated action #1 and already being able to identify the `CONNECTION_ID` for the long-running statement, the Automation Plot will execute an SQL statement to disconnect the related session, i.e. 
+```
+ALTER SYSTEM DISCONNECT SESSION '201939';
 
+```
 
-
-<br>![](/exercises/ex2/images/02_03.png)
-
-<br>![](/exercises/ex2/images/02_04.png)
+_Expected result_
+The long running statment gets terminated automatically and there's no further system degradation caused on it. 
