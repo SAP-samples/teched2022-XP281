@@ -22,7 +22,8 @@ In order to simulated such an event / sitation from the HANA Cloud side, we will
 <br>![](/exercises/ex2/images/02_05.png)
 
 Sharing the command iself for further usage: 
-```DO BEGIN
+```
+DO BEGIN
   -- Wait for a few seconds
   USING SQLSCRIPT_SYNC AS SYNCLIB;
   CALL SYNCLIB:SLEEP_SECONDS( 300 );  --runs for 5 minutes
