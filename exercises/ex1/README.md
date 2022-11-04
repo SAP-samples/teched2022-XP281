@@ -1,6 +1,6 @@
 # Exercise 1 - Description
 
-[Within](www.google.com) this execercise we are going to cover a potential use case of a development team that has developed an SAPUI5 Web App deployed on SAP BTP Cloud Foundry. However, sometimes there are disruptions / outages with their SAPUI5 Web App. The app is consumed through the SAP Launchpad service providing a central entry point with an easy and efficient access to relevant applications for the business users. Nevertheless, for a certain duration the app becomes inaccessible randomly for different users and as of now there are not any alerts sent out.   
+Within this execercise we are going to cover a potential use case of a development team that has developed an SAPUI5 Web App deployed on SAP BTP Cloud Foundry. However, sometimes there are disruptions / outages with their SAPUI5 Web App. The app is consumed through the SAP Launchpad service providing a central entry point with an easy and efficient access to relevant applications for the business users. Nevertheless, for a certain duration the app becomes inaccessible randomly for different users and as of now there are not any alerts sent out.   
 
 ## Main goal
 By using monitoring and automation services within the SAP BTP DevOps portfolio, we should be capable to build an integrated monitoring and health checks solution for the SAP UI5 app, so that in case of a disruption there is an alert fired immediately.  
@@ -11,8 +11,8 @@ By using monitoring and automation services within the SAP BTP DevOps portfolio,
 **IMPORTANT**: For the purpose of this excercise we will use the Cloud UI5 Application already created in the previous excercise, please see: [Exercise 1 - Build a Cloud UI5 Applicaiton on SAP Business Application Studio](../ex2/README.md)
 
 1. Configure your global account and subaccount in BTP 
-2. [Setup Alert Notification service]([url](https://help.sap.com/docs/ALERT_NOTIFICATION/5967a369d4b74f7a9c2b91f5df8e6ab6/812b6e3ed8934648ad15780cd51721ef.html)) 
-3. [Setup Automation Pilot ]((https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/76e77c4563d042b2b46f6c622be3a091.html))
+2. [Setup Alert Notification service](https://help.sap.com/docs/ALERT_NOTIFICATION/5967a369d4b74f7a9c2b91f5df8e6ab6/812b6e3ed8934648ad15780cd51721ef.html) 
+3. [Setup Automation Pilot ](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/76e77c4563d042b2b46f6c622be3a091.html)
 
 ## What you will learn
 **1. Learn the basics of SAP BTP** 
