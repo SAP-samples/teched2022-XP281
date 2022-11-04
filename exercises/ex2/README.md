@@ -74,6 +74,12 @@ When there is an alert coming from HANA Cloud, it will be detected from the Aler
 
 ## Automation Pilot: Remedition actions 
 
+Within this use case we will onboard SAP Automation Pilot to automated possible remediation action in case of a specific alert related to HANA Cloud gets detected by the Alert Notification service. 
+
+**How?**
+
+There will be two possible automated actions initiated by the Automation Pilot. Both of them are based on features to execute SQL Commands and Create Custom Notifications with SAP Automation Pilot and SAP Alert Notification Service (for further reference please find out [this tutorial prepared by Dan van Leeuwen](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html). 
+
 
 Then the Automation Pilot is to get further details from the HANA Cloud by execute SQL Commandsand (by `QueryDB`)  and provide further detaiils back to the Alert Notification service. 
 
