@@ -104,7 +104,7 @@ This statement has been running for 281 seconds, Statment Hash: bcd01a3e39ba4a82
 Plus we can specify the values for the SQL Statement: 
 <br>![](/exercises/ex2/images/02_14.png)
 
-**Expected result: **
+**Expected result:**
 
 The outup (as a result) is further processed and forward to the Alert Notification service so the Ops Team can automatically collect the needed information needed for debugging and further investigations.
 
