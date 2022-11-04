@@ -80,8 +80,7 @@ Within this use case we will onboard SAP Automation Pilot to automated possible 
 
 There will be two possible automated actions initiated by the Automation Pilot. Both of them are based on features to execute SQL Commands and Create Custom Notifications with SAP Automation Pilot and SAP Alert Notification Service . 
 
-_**NOTE:** for further reference please find out [this tutorial prepared by Dan van Leeuwen](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html). 
-_
+_**NOTE:** for further reference please find out [this tutorial prepared by Dan van Leeuwen](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html)._
 
 Then the Automation Pilot is to get further details from the HANA Cloud by execute SQL Commandsand (by `QueryDB`)  and provide further detaiils back to the Alert Notification service. 
 
