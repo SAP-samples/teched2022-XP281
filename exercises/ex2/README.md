@@ -63,11 +63,13 @@ NOTE: The Alert Notification Service must be in the same cloud foundry subaccoun
 <br>![](/exercises/ex2/images/02_10.png)
 
 4. Create a subscription attaching to it the condition and the action alreawy created. 
+
 <br>![](/exercises/ex2/images/02_011.png)
 
 **Expected result:**
 
 When there is an alert coming from HANA Cloud, it will be detected from the Alert Notification service and an alert should be sent out to the Ops Team, including the alert information as shown on the email underneath. 
+
 <br>![](/exercises/ex2/images/02_012.png)
 
 
