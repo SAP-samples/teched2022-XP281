@@ -12,7 +12,7 @@ By using monitoring and automation services within the SAP BTP DevOps portfolio,
 
 1. Configure your global account and subaccount in BTP 
 2. [Setup Alert Notification service]([url](https://help.sap.com/docs/ALERT_NOTIFICATION/5967a369d4b74f7a9c2b91f5df8e6ab6/812b6e3ed8934648ad15780cd51721ef.html)) 
-3. [Setup Automation Pilot ]([url](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/76e77c4563d042b2b46f6c622be3a091.html))
+3. [Setup Automation Pilot ]((https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/76e77c4563d042b2b46f6c622be3a091.html))
 
 ## What you will learn
 **1. Learn the basics of SAP BTP** 
