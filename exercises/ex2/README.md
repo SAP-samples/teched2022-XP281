@@ -16,6 +16,9 @@ A SAP HANA Cloud database or a data lake Relational Engine instance have a set o
 For this worksho we'll receive an alert from the Alert Notification service about `HDB Long Running Statement`
 <br>![](/exercises/ex2/images/02_02.png)
 
+Further details / specifics on the alert itself can be found at the Alert Notification service help documentation here: [HDB Long Running Statement](https://help.sap.com/docs/ALERT_NOTIFICATION/5967a369d4b74f7a9c2b91f5df8e6ab6/0bf53562d11548abb66a01444a25b070.html). 
+
+
 Then the Automation Pilot is to get further details from the HANA Cloud by execute SQL Commandsand (by `QueryDB`)  and provide further detaiils back to the Alert Notification service. 
 
 <br>![](/exercises/ex2/images/02_03.png)
