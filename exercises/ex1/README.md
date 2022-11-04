@@ -20,9 +20,9 @@ SAP Business Technology Platform (SAP BTP) offers you the ability to turn data i
 Before starting with developing extension applications, you need to understand how SAP BTP is structured so you can choose the best components for your use case. Take a look at Cloud Foundry and Kyma environments, global accounts and subaccounts.  
  
 These are the best resources to start from: 
-- [SAP BTP Product Page ]([url](https://help.sap.com/viewer/product/CP/Cloud/en-US?task=discover_task))
-- [What Is SAP BTP]([url](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/Cloud/en-US/73beb06e127f4e47b849aa95344aabe1.html)) 
-- [Cloud Foundry Environment]([url](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/Cloud/en-US/9c7092c7b7ae4d49bc8ae35fdd0e0b18.html)) 
+- [SAP BTP Product Page ](https://help.sap.com/viewer/product/CP/Cloud/en-US?task=discover_task)
+- [What Is SAP BTP](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/Cloud/en-US/73beb06e127f4e47b849aa95344aabe1.html)
+- [Cloud Foundry Environment](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/Cloud/en-US/9c7092c7b7ae4d49bc8ae35fdd0e0b18.html)
 
 **2. Learn the basics of SAP Alert Notification service for SAP BTP**
 SAP Alert Notification service for SAP BTP is a cloud service offering in SAP Business Technology Platform (BTP) DevOps portfolio. It is a real-time alerting engine which is designed to collect alerts from different providers. Customers can subscribe to the alerts of their interest and choose the most appropriate channel for delivery. The service masters in collecting crucial technical information from the SAP BTP service, also it can handle information regarding any custom scenario within your own environment.  
@@ -58,8 +58,8 @@ Diagram explained:
 Diagram explained:   
 1. There is a command build via the SAP Automation Pilot UI which calls the application health-check endpoint each 5 minutes.  
 2. The application health-check endpoint returns http response status code that is NOT “200” 
-3. Based on a [condition set within the SAP Automation Pilot command]([url](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/2d754542d0914e218d79719f7bd9600f.html)), if the response is different than “200” then the SAP Automation Pilot should notify the SAP Alert Notification service.  there is a c[ustom event to be produced by the SAP Automation Pilot which is to be consumed by the SAP Alert Notification Service]([url](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6124b87d6e0249be9ffbc5a091123f97.html)).  
-4. In the SAP Alert Notification Service there is a subscription which is configured to filter events received by the service so that in case there is an event which falls into [predefined conditions]([url](https://help.sap.com/docs/ALERT_NOTIFICATION/5967a369d4b74f7a9c2b91f5df8e6ab6/35ca5de101fc4d5791cdbb2df15e9d9b.html)), a [specific action]([url](https://help.sap.com/docs/ALERT_NOTIFICATION/5967a369d4b74f7a9c2b91f5df8e6ab6/8a7e092eebc74b3ea01d506265e8c8f8.html)) is to be fired - in our case that is an email to be sent out to the DevOps team.  
+3. Based on a [condition set within the SAP Automation Pilot command](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/2d754542d0914e218d79719f7bd9600f.html), if the response is different than “200” then the SAP Automation Pilot should notify the SAP Alert Notification service.  there is a [custom event to be produced by the SAP Automation Pilot which is to be consumed by the SAP Alert Notification Service](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6124b87d6e0249be9ffbc5a091123f97.html).
+4. In the SAP Alert Notification Service there is a subscription which is configured to filter events received by the service so that in case there is an event which falls into [predefined conditions](https://help.sap.com/docs/ALERT_NOTIFICATION/5967a369d4b74f7a9c2b91f5df8e6ab6/35ca5de101fc4d5791cdbb2df15e9d9b.html), a [specific action](https://help.sap.com/docs/ALERT_NOTIFICATION/5967a369d4b74f7a9c2b91f5df8e6ab6/8a7e092eebc74b3ea01d506265e8c8f8.html) is to be fired - in our case that is an email to be sent out to the DevOps team.  
 
 
 # Exercise 1 - Implementation
@@ -72,7 +72,7 @@ Diagram explained:
 <br>![](/exercises/ex1/images/01_04.png)
 
 **2. SAP Automation Pilot health-check command**  
-- For set up a health-check command please reuse  the command [HttpRequest already provided by the SAP Automation Pilot]([url](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6ce1e04b7812411db04b80ea769ef46e.html)), where you can modify the method and the URL.  
+- For set up a health-check command please reuse  the command [HttpRequest already provided by the SAP Automation Pilot](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6ce1e04b7812411db04b80ea769ef46e.html), where you can modify the method and the URL.  
 <br>![](/exercises/ex1/images/01_05.png)
 
 - Conditions within the SAP Automation Pilot which will fire the custom event
@@ -82,7 +82,7 @@ Diagram explained:
 
 `{ "eventType": "CUSTOM-ALERT", "severity": "WARNING", "category": "ALERT", "subject": "Alert Sent by SAP Automation Pilot: SAPUI5 Web App Is Not Accessible", "body": "IMPORTANT! SAPUI5 Web App cannot be accessed by the Automation Pilot health check request.", "resource": { "resourceName": "App #2", "resourceType": "application" } } `
 
-- The regular and repetitive health-checks calls are performed via the Automation Pilot built-in [job scheduler]([url](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/96863a2380d24ba4bab0145bbd78e411.html)), currently set to execute the command in question each 5 mins.  
+- The regular and repetitive health-checks calls are performed via the Automation Pilot built-in [job scheduler](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/96863a2380d24ba4bab0145bbd78e411.html), currently set to execute the command in question each 5 mins.  
 <br>![](/exercises/ex1/images/01_07.png)
 
 **3. SAP Alert Notification service subscription setup**
