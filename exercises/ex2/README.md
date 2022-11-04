@@ -82,11 +82,16 @@ There will be two possible automated actions initiated by the Automation Pilot. 
 
 _**NOTE:** for further reference please find out [this tutorial prepared by Dan van Leeuwen](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html)._
 
-1. Automated action #1: 
-SAP Automation Pilot is to get further details about the long-running statment from the HANA Cloud by execute SQL Commandsand (by `QueryDB`)  and provide further detaiils back to the Alert Notification service. 
+**(1) Automated action #1:** Collect data about long-running statment
+We are going to use the SQL Plan Cach in HANA Cloud so that SAP Automation Pilot is to get further details about the long-running statment by performing a query using the `ExecuteHanaCloudSqlStatement` command and provide further detaiils back to the Alert Notification service. 
 
 The query DB will be based on the `STATEMENT_HASH` and shall look like this one: 
-```SELECT * FROM M_SQL_PLAN_CACHE WHERE STATEMENT_HASH='bcd01a3e39ba4a82758ea300fd8d5a9a'; ```
+```
+SELECT *
+FROM M_SQL_PLAN_CACHE
+WHERE STATEMENT_HASH = 'bcd01a3e39ba4a82758ea300fd8d5a9a';
+
+```
 NOTE: The `STATEMENT_HASH` is known to the Automation Pilot as it is available within the alert sent by the Alert Notification service, i.e. 
 
 ```
@@ -94,11 +99,17 @@ Event Body:
 Identifies long-running SQL statements.
 This statement has been running for 281 seconds, Statment Hash: bcd01a3e39ba4a82758ea300fd8d5a9a, Transaction ID: 315, client PID: 170, thread ID: 3554, statement ID: 890320950785270.
 ```
+<br>![](/exercises/ex2/images/02_13.png)
+
+Plus we can specify the values for the SQL Statement: 
+<br>![](/exercises/ex2/images/02_14.png)
+
+**Expected result: **
+
+The outup (as a result) is further processed and forward to the Alert Notification service so the Ops Team can automatically collect the needed information needed for debugging and further investigations.
 
 
-
-
-
+**(1) Automated action #2:** Collect data about long-running statment
 
 
 
