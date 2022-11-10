@@ -1,4 +1,4 @@
-# Session XP281 - Monitoring and Ops Automation for Your Cloud Application and SAP HANA Cloud
+# XP281 - Monitoring and Ops Automation for Your Cloud Application and SAP HANA Cloud
 
 ## Description
 
