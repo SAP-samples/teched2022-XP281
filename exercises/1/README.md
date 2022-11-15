@@ -119,14 +119,14 @@ NOTE: For the Configuration Json parameters use:
 <br>![](/exercises/1/images/01_05_3.png)
 
 - Create an input `cloudAppInputs` within the Inputs section in Automation Pilot where is going to be specified
--- `appMethod` - GET
--- `endPoint` - the full URL for the health-check.html file we have created 
+ -- `appMethod` - GET
+ -- `endPoint` - the full URL for the health-check.html file we have created 
 See for reference the screenshot attached here: 
 <br>![](/exercises/1/images/01_05_4.png)
 
 - Create the needed inputs for the Alert Notification service - named `ANSUserInput`.
--- client_id -> copy value from service key created within the Alert Notification service
--- client_secret -> (sensitive data) copy value from service key created within the Alert Notification service
+--- client_id -> copy value from service key created within the Alert Notification service
+--- client_secret -> (sensitive data) copy value from service key created within the Alert Notification service
 The final result should look like this one:
 <br>![](/exercises/1/images/01_05_12.png)
 
