@@ -32,35 +32,35 @@ Then you shall see the dev space is in status `STARTING`. Wait until it is in st
 
 9. Connect to a Cloud Foundry endpoint
 <br>You will need to log on to Cloud Foundry. To do that, start the command palette from the menu **View > Command Palette**, search for `cf:login`, and select the command `CF:Login to Cloud Foundry`.
-<br>![]/exercises/0/images/ex0_7.png)
+<br>![](/exercises/0/images/ex0_7.png)
 <br>Then, you shall enter the Cloud Foundry endpoint you want to use. Enter your email and your password to proceed.
-<br>![]/exercises/0/images/ex0_8.png)
+<br>![](/exercises/0/images/ex0_8.png)
 <br>Select the Cloud Foundry Organization and space you want use.<br> You will see messages in the lower right hand corner indicating that you are connected to the endpoint once these prompts have been answered.
-<br>![]/exercises/0/images/ex0_9.png)
+<br>![](/exercises/0/images/ex0_9.png)
 
 
 10. Create your simple UI5 Cloud app 
 <br>SAP Fiori tools includes an Application Generator that provides a wizard-style approach for creating applications.
 <br>To launch the Application Generator, start the command palette from the menu item **View > Command Palette**, search for `fiori generator`, and select the command Fiori: Open Application Generator
 <br>Specify the application type SAPUI5 freestyle and the floor plan `SAPUI5 Application` and go to the **Next** screen.
-<br>![]/exercises/0/images/ex0_10.png)
+<br>![](/exercises/0/images/ex0_10.png)
 <br>Specify the Data Source as `None` and click on the **Next** button. 
-<br>![]/exercises/0/images/ex0_11.png)
+<br>![](/exercises/0/images/ex0_11.png)
 _**NOTE** Considering this is going to be a static UI5 app - we won't pick up a Data Source at that point.
 <br>Keep `View1` within the **View name** entity selection field and click on the **Next** button. 
-<br>![]/exercises/0/images/ex0_12.png)
+<br>![](/exercises/0/images/ex0_12.png)
 <br>Within the Project Attributtes configuration please fill in the data as shown below and click on the **Finish** button. 
-<br>![]/exercises/0/images/ex0_13.png)
+<br>![](/exercises/0/images/ex0_13.png)
 <br>Then, you will see that dependencies are in a process of installation
-<br>![]/exercises/0/images/ex0_14.png)
+<br>![](/exercises/0/images/ex0_14.png)
 <br>Once, created , we can see the codebase for our application. 
-<br>![]/exercises/0/images/ex0_15.png)
+<br>![](/exercises/0/images/ex0_15.png)
 
 11. Modify the homepage of your application 
 <br>We can modify the homepage of our application by simply using the SAP Business Application Studio built-in Layout Editor feature. In order to do so, please navigatre to your app view at `View1.view.xml` 
-<br>![]/exercises/0/images/ex0_16.png)
+<br>![](/exercises/0/images/ex0_16.png)
 <br>Open the view with the  Layout Editor. 
-<br>![]/exercises/0/images/ex0_17.png)
+<br>![](/exercises/0/images/ex0_17.png)
 <br>By using the available controls we can add the following elements just to customise the homepage of our app: 
 - icon 
 - text area 
