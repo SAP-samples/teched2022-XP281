@@ -112,7 +112,7 @@ NOTE: For the Configuration Json parameters use:
 - Create an Service Account for the Automaiton Pilot  and give the needed permissions as per the screenshot. NOTE: Authentication Type is to be set to `Basic`. 
 <br>![](/exercises/1/images/01_05_1.png)
 
-- Keep the credentials of yoir Service Account as it won't be available later but it will be required when creating input data within the SAP Automation Pilot. 
+- Keep the credentials of your Service Account as it won't be available later but it will be required when creating input data within the SAP Automation Pilot. 
 <br>![](/exercises/1/images/01_05_2.png)
 
 - Create an input `AutoPiSecret` within the Inputs section in Automation Pilot where we will add the Automaution Pilot password that we just have created and stored from the previous step. 
