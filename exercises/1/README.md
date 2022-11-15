@@ -45,14 +45,14 @@ The architecture design covers the assumptions as listed below:
 
 The expected use case (positive and negative application responses) can be visualized as shown underneath:  
 
-**SAPUI5 Web App is UP & RUNNING **
+**SAPUI5 Web App is UP & RUNNING**
 <br>![](/exercises/1/images/01_01.png)
 Diagram explained:  
 1. There is a command build via the SAP Automation Pilot UI which calls the application health-check endpoint each 5 minutes.  
 2. The application health-check endpoint returns http response status code: “200” 
 3. Based on a condition set within the SAP Automation Pilot command, if the response is “200” there is no need of further actions.  
  
-**SAPUI5 Web App  is NOT accessible  **
+**SAPUI5 Web App  is NOT accessible**
 <br>![](/exercises/1/images/01_02.png)
 
 Diagram explained:   
@@ -65,11 +65,33 @@ Diagram explained:
 # Exercise 1 - Implementation
 
 **1. Cloud UI5 app health-check endpoint**
-- Within the already existing Cloud UI5 app please we need to setup a health-check endpoint. You can build the endpoint as an simple html file which is to be called  
+- Within the already existing Cloud UI5 app please we need to setup a health-check endpoint. You can build the endpoint as an simple html file which is to be named `health-check.html`  
 <br>![](/exercises/1/images/01_03.png)
+NOTE: adding the html code underneath as well:
+```
+<!DOCTYPE html>
+<html>
+    <body>
+        <p><b>Welcome to our SAP UI5 Web App Healthcheck end-point! </b></p>
+        <p><b>If you read this message - your application is live. </b></p>
 
-- In order  to call the specific html file from Automation Pilot perspective you should include the following settings within the `xs-app.json` file into your SAP UI5 app
+    </body>
+</html>
+```
+
+- In order to call the specific html file from Automation Pilot perspective you should include the following settings within the `xs-app.json` file within your SAP UI5 app. 
 <br>![](/exercises/1/images/01_04.png)
+
+NOTE: adding the settings undeneath as well: 
+```
+ {
+      "source": "^/health-check.html$",
+      "service": "html5-apps-repo-rt",
+      "httpMethods": ["GET", "POST"],
+      "authenticationType": "none"
+    },
+
+```
 
 **2. SAP Automation Pilot health-check command**  
 - For set up a health-check command please reuse  the command [HttpRequest already provided by the SAP Automation Pilot](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6ce1e04b7812411db04b80ea769ef46e.html), where you can modify the method and the URL.  
