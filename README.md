@@ -17,16 +17,16 @@ The main purpose of this workshop is to provide more insights and learn how to c
 ## Requirements
 
 The requirements to follow the exercises in this repository are: 
-- You have access to SAP Business Application Studio (to onboard SAP Business Application Studio in a trial account, see Set Up SAP Business Application Studio for Development).
-- Access to the SAP Business Technology Platform (BTP) that includes SAP HANA Cloud, SAP Alert Notification Service, and SAP Automation Pilot. These services are available in the SAP BTP free tier.
+- You have access to SAP Business Application Studio (to onboard SAP Business Application Studio in a trial account, see [Set Up SAP Business Application Studio for Development](https://developers.sap.com/tutorials/appstudio-onboarding.html)).
+- Access to the SAP Business Technology Platform (BTP) that includes SAP HANA Cloud, SAP Alert Notification Service, and SAP Automation Pilot. These services are available in the SAP BTP trial accounts and have a free plan.
 
 ## Exercises
 
-During the workshop itself there will be two main excercises related to the monitoring and automated operatins: one covering a cloud application and another one with a focus towards HANA Cloud . Furher details are provided by linking to the specific exercise pages as it follows:
+During the workshop itself there will be two main excercises related to the monitoring and automated operatins: one covering a cloud application and another one with a focus towards HANA Cloud. Furher details are provided by linking to the specific exercise pages as it follows:
 
-- [Exercise 1 - Build a Cloud UI5 Application on SAP Business Applicaiton Studio](exercises/ex0/)
-- [Exercise 2 - Cloud Application Monitoring with Alert Notificaiton service and Automation Pilot](exercises/ex1/)
-- [Exercise 3 - HANA Cloud monitoring and automated remediation](exercises/ex2/)
+- [Exercise 1 - Build a Cloud UI5 Application on SAP Business Applicaiton Studio](exercises/0/)
+- [Exercise 2 - Cloud Application Monitoring with Alert Notificaiton service and Automation Pilot](exercises/1/)
+- [Exercise 3 - HANA Cloud monitoring and automated remediation](exercises/2/)
 
 ## How to obtain support
 
