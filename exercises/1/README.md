@@ -93,16 +93,90 @@ NOTE: adding the settings undeneath as well:
 
 ```
 
+- Build and redeploy the application via the SAP Business Applicaiton Studio (same steps as the ones for build app package and deployment described in Excercise #1) 
+
+- Check the health-check endpoint it is accessible for anonymous users. 
+<br>![](/exercises/1/images/01_04_1.png)
+
 **2. SAP Automation Pilot health-check command**  
+
+- Access the Alert Notification service cockput and navigate to **Service Keys** >> **Create** so you can create service keys for the Alert Notification service and keep them for a moment as we will need the credentials soon. 
+<br>![](/exercises/1/images/01_05_11.png)
+NOTE: For the Configuration Json parameters use: 
+```
+{
+	"type": "BASIC"
+}
+```
+
+- Create an Service Account for the Automaiton Pilot  and give the needed permissions as per the screenshot. NOTE: Authentication Type is to be set to `Basic`. 
+<br>![](/exercises/1/images/01_05_1.png)
+
+- Keep the credentials of yoir Service Account as it won't be available later but it will be required when creating input data within the SAP Automation Pilot. 
+<br>![](/exercises/1/images/01_05_2.png)
+
+- Create an input `AutoPiSecret` within the Inputs section in Automation Pilot where we will add the Automaution Pilot password that we just have created and stored from the previous step. 
+<br>![](/exercises/1/images/01_05_3.png)
+
+- Create an input `cloudAppInputs` within the Inputs section in Automation Pilot where is going to be specified
+-- `appMethod` - GET
+-- `endPoint` - the full URL for the health-check.html file we have created 
+See for reference the screenshot attached here: 
+<br>![](/exercises/1/images/01_05_4.png)
+
+- Create the needed inputs for the Alert Notification service - named `ANSUserInput`.
+-- client_id -> copy value from service key created within the Alert Notification service
+-- client_secret -> (sensitive data) copy value from service key created within the Alert Notification service
+The final result should look like this one:
+<br>![](/exercises/1/images/01_05_12.png)
+
 - For set up a health-check command please reuse  the command [HttpRequest already provided by the SAP Automation Pilot](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6ce1e04b7812411db04b80ea769ef46e.html), where you can modify the method and the URL.  
 <br>![](/exercises/1/images/01_05.png)
 
-- Conditions within the SAP Automation Pilot which will fire the custom event
-<br>![](/exercises/1/images/01_06.png)
+To do so, access the command provided within the respective Provided Catalog by the SAP Automation Pilot - `HTTP Operations (http-sapcp)`, open it and then click on the **"Clone"** button. You can give a meaningful name to the newly created command, i.e. `AppHealhCheck`. 
+
+- Within the **Input Keys** section use the input keys that you have created in the previous steps and specify the input keys for: 
+-- `methind`
+-- `url`
+-- `password`
+
+See for reference the screenshots here: 
+<br>![](/exercises/1/images/01_05_5.png)
+<br>![](/exercises/1/images/01_05_6.png)
+
+- Remove the Output Keys and keep just the one for `status`. 
+<br>![](/exercises/1/images/01_05_7.png)
+
+- Add an **Executor**  for the the command you just have cretead and use a command `http-sapcp:HttpRequest:1` and name this step `appHealthCheck`
+-- keep the paramenters within the command as specified here: 
+<br>![](/exercises/1/images/01_05_8.png)
+
+- Access the **output** and change the Output Values for `status` (number) to: `$(.appHealthCheck.output.status)`
+<br>![](/exercises/1/images/01_05_9.png)
+
+- Add a new executor `notifyANS`
+<br>![](/exercises/1/images/01_05_10.png)
+
+As we see the command expect to specify parameters for: 
+- data 
+- password 
+- url 
+- user 
+- tokenURL (optional) 
+
+Therefore it is needed to add the following Input Keys from the `ANSUserInput` we already have created from the previous steps. 
+`ANSClientID` --> (string) Default Value: key client_id from input ANSUserInput
+`ANSClientSecret` --> (string / sensitive) Default Value: key client_secret from input ANSUserInput
+`url` --> value from ANS service key + `/cf/producer/v1/resource-events`
 
 - The data object for the custom event that is to be produced by the SAP Automation Pilot in case the condition is met:  
-
 `{ "eventType": "CUSTOM-ALERT", "severity": "WARNING", "category": "ALERT", "subject": "Alert Sent by SAP Automation Pilot: SAPUI5 Web App Is Not Accessible", "body": "IMPORTANT! SAPUI5 Web App cannot be accessed by the Automation Pilot health check request.", "resource": { "resourceName": "App #2", "resourceType": "application" } } `
+
+Expected result should like this setup: 
+<br>![](/exercises/1/images/01_05_13.png)
+
+- Conditions within the SAP Automation Pilot which will fire the custom event
+<br>![](/exercises/1/images/01_06.png)
 
 - The regular and repetitive health-checks calls are performed via the Automation Pilot built-in [job scheduler](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/96863a2380d24ba4bab0145bbd78e411.html), currently set to execute the command in question each 5 mins.  
 <br>![](/exercises/1/images/01_07.png)
