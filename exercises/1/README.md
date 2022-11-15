@@ -176,7 +176,7 @@ Therefore it is needed to add the following Input Keys from the `ANSUserInput` w
 `url` --> value from ANS service key + `/cf/producer/v1/resource-events`
 
 - The data object for the custom event that is to be produced by the SAP Automation Pilot in case the condition is met:  
-`{ "eventType": "CUSTOM-ALERT", "severity": "WARNING", "category": "ALERT", "subject": "Alert Sent by SAP Automation Pilot: SAPUI5 Web App Is Not Accessible", "body": "IMPORTANT! SAPUI5 Web App cannot be accessed by the Automation Pilot health check request.", "resource": { "resourceName": "App #2", "resourceType": "application" } } `
+`{ "eventType": "CUSTOM-ALERT", "severity": "WARNING", "category": "ALERT", "subject": "Alert Sent by SAP Automation Pilot: SAPUI5 Web App Is Not Accessible", "body": "IMPORTANT! SAPUI5 Web App cannot be accessed by the Automation Pilot health check request.", "resource": { "resourceName": "cloudApp", "resourceType": "application" } }`
 
 Expected result should like this setup: 
 <br>![](/exercises/1/images/01_05_13.png)
