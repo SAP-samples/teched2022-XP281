@@ -138,9 +138,10 @@ The final result should look like this one:
 To do so, access the command provided within the respective Provided Catalog by the SAP Automation Pilot - `HTTP Operations (http-sapcp)`, open it and then click on the **"Clone"** button. You can give a meaningful name to the newly created command, i.e. `AppHealhCheck`. 
 
 - Within the **Input Keys** section use the input keys that you have created in the previous steps and specify the input keys for: 
-> `methond`
-> `url`
-> `password`
+
+`methond`
+`url`
+`password`
 
 See for reference the screenshots here: 
 <br>![](/exercises/1/images/01_05_5.png)
@@ -150,7 +151,8 @@ See for reference the screenshots here:
 <br>![](/exercises/1/images/01_05_7.png)
 
 - Add an **Executor**  for the the command you just have cretead and use a command `http-sapcp:HttpRequest:1` and name this step `appHealthCheck`
-> keep the paramenters within the command as specified here: 
+
+Keep the paramenters within the command as specified here: 
 <br>![](/exercises/1/images/01_05_8.png)
 
 - Access the **output** and change the Output Values for `status` (number) to: `$(.appHealthCheck.output.status)`
@@ -168,9 +170,9 @@ As we see the command expect to specify parameters for:
 
 Therefore it is needed to add the following Input Keys from the `ANSUserInput` we already have created from the previous steps. 
 
-> `ANSClientID` --> (string) Default Value: key client_id from input ANSUserInput
-> `ANSClientSecret` --> (string / sensitive) Default Value: key client_secret from input ANSUserInput
-> `url` --> value from ANS service key + `/cf/producer/v1/resource-events`
+`ANSClientID` --> (string) Default Value: key client_id from input ANSUserInput
+`ANSClientSecret` --> (string / sensitive) Default Value: key client_secret from input ANSUserInput
+`url` --> value from ANS service key + `/cf/producer/v1/resource-events`
 
 - The data object for the custom event that is to be produced by the SAP Automation Pilot in case the condition is met:  
 `{ "eventType": "CUSTOM-ALERT", "severity": "WARNING", "category": "ALERT", "subject": "Alert Sent by SAP Automation Pilot: SAPUI5 Web App Is Not Accessible", "body": "IMPORTANT! SAPUI5 Web App cannot be accessed by the Automation Pilot health check request.", "resource": { "resourceName": "App #2", "resourceType": "application" } } `
