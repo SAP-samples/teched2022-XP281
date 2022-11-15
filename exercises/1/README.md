@@ -126,6 +126,7 @@ See for reference the screenshot attached here:
 <br>![](/exercises/1/images/01_05_4.png)
 
 - Create the needed inputs for the Alert Notification service - named `ANSUserInput`.
+
 ->  client_id -> copy value from service key created within the Alert Notification service
 
 -> client_secret -> (sensitive data) copy value from service key created within the Alert Notification service
