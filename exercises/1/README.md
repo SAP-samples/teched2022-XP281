@@ -182,7 +182,7 @@ Expected result should like this setup:
 <br>![](/exercises/1/images/01_05_13.png)
 
 - Conditions within the SAP Automation Pilot which will fire the custom event
-<br>![](/exercises/1/images/01_06.png)
+<br>![](/exercises/1/images/01_05_14.png)
 
 - The regular and repetitive health-checks calls are performed via the Automation Pilot built-in [job scheduler](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/96863a2380d24ba4bab0145bbd78e411.html), currently set to execute the command in question each 5 mins.  
 <br>![](/exercises/1/images/01_07.png)
