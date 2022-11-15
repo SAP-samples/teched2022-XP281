@@ -1,4 +1,4 @@
-# Exercise 1 - Description
+# Exercise 2 - Description
 
 Within this execercise we are going to cover a potential use case of a development team that has developed an SAPUI5 Web App deployed on SAP BTP Cloud Foundry. However, sometimes there are disruptions / outages with their SAPUI5 Web App. The app is consumed through the SAP Launchpad service providing a central entry point with an easy and efficient access to relevant applications for the business users. Nevertheless, for a certain duration the app becomes inaccessible randomly for different users and as of now there are not any alerts sent out.   
 
