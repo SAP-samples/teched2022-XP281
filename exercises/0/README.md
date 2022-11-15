@@ -8,8 +8,7 @@ After completing these steps you will have a simple cloud app deployed on a Clou
 
 1.	Access SAP Business Application Studio.
 In a trial account, launch the SAP BTP trial landing page, and choose SAP Business Application Studio.
-<br>![](images/0_1.png)
-
+<br>![](/exercises/1/images/0_1.png)
 
 2. In case there is an issue opening it, navigate in your trial account, access SAP BTP cockpit, navigate to the subaccount with SAP Business Application Studio subscription, click Subscriptions and Instances, and click SAP Business Application Studio.
 <br>![](images/0_2.png)
