@@ -1,6 +1,6 @@
 # Exercise 2 - Description
 
-Within this execercise we are going to cover a potential use case of a development team that has developed an SAPUI5 Web App deployed on SAP BTP Cloud Foundry. However, sometimes there are disruptions / outages with their SAPUI5 Web App. The app is consumed through the SAP Launchpad service providing a central entry point with an easy and efficient access to relevant applications for the business users. Nevertheless, for a certain duration the app becomes inaccessible randomly for different users and as of now there are not any alerts sent out.   
+Within this execercise we are going to cover a potential use case of a development team that has developed an SAPUI5 Web App deployed on SAP BTP Cloud Foundry. The app is consumed through the SAP Launchpad service providing a central entry point with an easy and efficient access to relevant applications for the business users. Nevertheless, if the app becomes randomly inaccessible for a certain duration, as of now there are not alerts of that unavailability sent out.   
 
 ## Main goal
 By using monitoring and automation services within the SAP BTP DevOps portfolio, we should be capable to build an integrated monitoring and health checks solution for the SAP UI5 app, so that in case of a disruption there is an alert fired immediately.  
@@ -8,7 +8,7 @@ By using monitoring and automation services within the SAP BTP DevOps portfolio,
 ## Additional preparation
 (covered also during the workshop) 
 
-**IMPORTANT**: For the purpose of this excercise we will use the Cloud UI5 Application already created in the previous excercise, please see: [Exercise 1 - Build a Cloud UI5 Applicaiton on SAP Business Application Studio](../ex2/README.md)
+**IMPORTANT**: For the purpose of this excercise we will use the Cloud UI5 Application already created in the previous excercise, please see: [Exercise 1 - Build a Cloud UI5 Applicaiton on SAP Business Application Studio](../2/README.md)
 
 1. Configure your global account and subaccount in BTP 
 2. [Setup Alert Notification service](https://help.sap.com/docs/ALERT_NOTIFICATION/5967a369d4b74f7a9c2b91f5df8e6ab6/812b6e3ed8934648ad15780cd51721ef.html) 
@@ -23,6 +23,7 @@ These are the best resources to start from:
 - [SAP BTP Product Page ](https://help.sap.com/viewer/product/CP/Cloud/en-US?task=discover_task)
 - [What Is SAP BTP](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/Cloud/en-US/73beb06e127f4e47b849aa95344aabe1.html)
 - [Cloud Foundry Environment](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/Cloud/en-US/9c7092c7b7ae4d49bc8ae35fdd0e0b18.html)
+- [Kyma Environment](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/468c2f3c3ca24c2c8497ef9f83154c44.html)
 
 **2. Learn the basics of SAP Alert Notification service for SAP BTP**
 SAP Alert Notification service for SAP BTP is a cloud service offering in SAP Business Technology Platform (BTP) DevOps portfolio. It is a real-time alerting engine which is designed to collect alerts from different providers. Customers can subscribe to the alerts of their interest and choose the most appropriate channel for delivery. The service masters in collecting crucial technical information from the SAP BTP service, also it can handle information regarding any custom scenario within your own environment.  
@@ -34,7 +35,7 @@ The primary goal of SAP Automation Pilot is to simplify and automate complex
 
 ## Exercise: Concept
 
-The solution to be built is based on a synergy and native integration between the SAP Alert Notification Service and  SAP Automation Pilot as integrating their existing capabilities for Ops automation and Alerting in SAP BTP we can build the needed SAPUI5 Web App health check monitoring.  
+The solution to be built is based on a synergy and native integration between the SAP Alert Notification Service and  SAP Automation Pilot as integrating their existing capabilities for Ops automation and Alerting in SAP BTP we can build the needed SAPUI5 Web App health check monitoring. Using those powerful primitives of those services, interaction with complex app API and real-user-like monitoring can be easily achieved just as well.
 
 The architecture design covers the assumptions as listed below:  
 - There is an application health-check endpoint that to be called regularly  
@@ -63,12 +64,12 @@ Diagram explained:
 
 
 # Exercise 1 - Implementation
-
 **1. Cloud UI5 app health-check endpoint**
-- Within the already existing Cloud UI5 app please we need to setup a health-check endpoint. You can build the endpoint as an simple html file which is to be named `health-check.html`  
+
+- Within the already existing Cloud UI5 app please we need to setup a health-check endpoint. You can build the endpoint as a simple html file which is to be named `health-check.html`  
 <br>![](/exercises/1/images/01_03.png)
 NOTE: adding the html code underneath as well:
-```
+```html
 <!DOCTYPE html>
 <html>
     <body>
@@ -78,80 +79,97 @@ NOTE: adding the html code underneath as well:
     </body>
 </html>
 ```
-
-- In order to call the specific html file from Automation Pilot perspective you should include the following settings within the `xs-app.json` file within your SAP UI5 app. 
+- In order to query the specific html file without authorization, you should include the following settings within the `xs-app.json` file into your SAP UI5 app.
 <br>![](/exercises/1/images/01_04.png)
-
-NOTE: adding the settings undeneath as well: 
-```
- {
-      "source": "^/health-check.html$",
-      "service": "html5-apps-repo-rt",
-      "httpMethods": ["GET", "POST"],
-      "authenticationType": "none"
-    },
-
+```json
+{
+  "source": "^/health-check.html$",
+  "service": "html5-app-repo-rt",
+  "httpMethods": ["GET","POST"],
+  "authenticationType": "none"
+}
 ```
 
 - Build and redeploy the application via the SAP Business Applicaiton Studio (same steps as the ones for build app package and deployment described in Excercise #1) 
 
-- Check the health-check endpoint it is accessible for anonymous users. 
+- Check the health-check endpoint it is accessible for an anonymous users. 
 <br>![](/exercises/1/images/01_04_1.png)
 
-**2. SAP Automation Pilot health-check command**  
-
-- Access the Alert Notification service cockput and navigate to **Service Keys** >> **Create** so you can create service keys for the Alert Notification service and keep them for a moment as we will need the credentials soon. 
-<br>![](/exercises/1/images/01_05_11.png)
+**2. Setup Alert Notification**
+- To setup Alert Notification service for SAP BTP, go to the BTP cockpit, navigate to the subaccount, `Cloud Foundry` -> `Spaces` tab and enter your space.
+- Navigate to the `Marketplace` and on the `Alert Notification` card menu, coose `create`. Give it a name, default configurations will do.
+<br>![](/exercises/1/images/01_04_1.png)
+- In the `Instances` tab in the same space you'll find the service newly created instance. For it, create a service key with which the service API will be accessed.
 NOTE: For the Configuration Json parameters use: 
 ```
 {
-	"type": "BASIC"
+  "type": "BASIC"
 }
 ```
+<br>![](/exercises/1/images/01_04_2.png)
+- From here, you're able to view the service key credentials and use them to configure the Automation Pilot command with this particular ANS instance. Keep them for a moment as we will need the credentials soon. 
+<br>![](/exercises/1/images/01_04_3.png)
 
-- Create an Service Account for the Automaiton Pilot  and give the needed permissions as per the screenshot. NOTE: Authentication Type is to be set to `Basic`. 
+                - Access the Alert Notification service cockpit and navigate to **Service Keys** >> **Create** so you can create service keys for the Alert Notification service and 
+                <br>![](/exercises/1/images/01_05_11.png)
+                
+
+**3. Setup SAP Automation Pilot**
+
+- Navigate to your subaccount's `Service Marketplace` tab and choose `Create` on Automation Pilot's cart to subscribe to the service
+<br>![](/exercises/1/images/01_04_4.png)
+
+- Navigate to the `Security`, `Users` tab and assing the `AutomationPilot_Admin` role collection to your user.
+<br>![](/exercises/1/images/01_04_5.png)
+
+- In the `Instances & Subscriptions` tab in your subaccount, open your Automation Pilot application subscription
+<br>![](/exercises/1/images/01_04_6.png)
+
+- Create an Service Account for the Automaiton Pilot and give the needed permissions as per the screenshot. 
+<br>NOTE: Set `Authentication Type` to `Basic`. 
 <br>![](/exercises/1/images/01_05_1.png)
 
 - Keep the credentials of your Service Account as it won't be available later but it will be required when creating input data within the SAP Automation Pilot. 
 <br>![](/exercises/1/images/01_05_2.png)
 
+**4. Model the health-check command in SAP Automation Pilot**  
+
+- In the `Own` Catalog page, create a new catalog to hold the health check commands and relevant inputs
+<br>![](/exercises/1/images/01_05_0.png)
+
 - Create an input `AutoPiSecret` within the Inputs section in Automation Pilot where we will add the Automaution Pilot password that we just have created and stored from the previous step. 
 <br>![](/exercises/1/images/01_05_3.png)
 
 - Create an input `cloudAppInputs` within the Inputs section in Automation Pilot where is going to be specified
- 
- `appMethod` - GET
- `endPoint` - the full URL for the health-check.html file we have created 
-See for reference the screenshot attached here: 
+  -  `appMethod`: GET
+  -  `endPoint`: the full URL for the health-check.html file we have created 
+<br>For reference, see the screenshot: 
 <br>![](/exercises/1/images/01_05_4.png)
 
 - Create the needed inputs for the Alert Notification service - named `ANSUserInput`.
 
-->  client_id -> copy value from service key created within the Alert Notification service
+  -> client_id -> copy value from service key created within the Alert Notification service
 
--> client_secret -> (sensitive data) copy value from service key created within the Alert Notification service
-The final result should look like this one:
+  -> client_secret -> (sensitive data) copy value from service key created within the Alert Notification service
+<br><br>The final result should look like this one:
 <br>![](/exercises/1/images/01_05_12.png)
 
-- For set up a health-check command please reuse  the command [HttpRequest already provided by the SAP Automation Pilot](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6ce1e04b7812411db04b80ea769ef46e.html), where you can modify the method and the URL.  
+- To set up a health-check command please reuse the command [HttpRequest already provided by the SAP Automation Pilot](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6ce1e04b7812411db04b80ea769ef46e.html), where you can modify the method and the URL.  
 <br>![](/exercises/1/images/01_05.png)
-
-To do so, access the command provided within the respective Provided Catalog by the SAP Automation Pilot - `HTTP Operations (http-sapcp)`, open it and then click on the **"Clone"** button. You can give a meaningful name to the newly created command, i.e. `AppHealhCheck`. 
+<br>To do so, access the command provided within the respective Provided Catalog by the SAP Automation Pilot - `HTTP Operations (http-sapcp)`, open it and then click on the **"Clone"** button. You can give a meaningful name to the newly created command, i.e. `AppHealhCheck`. 
 
 - Within the **Input Keys** section use the input keys that you have created in the previous steps and specify the input keys for: 
-
-`methond`
-`url`
-`password`
-
-See for reference the screenshots here: 
+  - `methond`
+  - `url`
+  - `password`
+<br>See for reference the screenshots here: 
 <br>![](/exercises/1/images/01_05_5.png)
 <br>![](/exercises/1/images/01_05_6.png)
 
 - Remove the Output Keys and keep just the one for `status`. 
 <br>![](/exercises/1/images/01_05_7.png)
 
-- Add an **Executor**  for the the command you just have cretead and use a command `http-sapcp:HttpRequest:1` and name this step `appHealthCheck`
+- Add an **Executor** for the the command you just have cretead and use a command `http-sapcp:HttpRequest:1` and name this step `appHealthCheck`
 
 Keep the paramenters within the command as specified here: 
 <br>![](/exercises/1/images/01_05_8.png)
@@ -159,39 +177,40 @@ Keep the paramenters within the command as specified here:
 - Access the **output** and change the Output Values for `status` (number) to: `$(.appHealthCheck.output.status)`
 <br>![](/exercises/1/images/01_05_9.png)
 
-- Add a new executor `notifyANS`
+- Add a new executor `notifyANS` of the `monitoring-sapcp:SendAlertNotificationServiceEvent:1` command which would send the notification event
 <br>![](/exercises/1/images/01_05_10.png)
+<br>As we see the command expect to specify parameters for: 
+  - data: the notification event payload
+  - password: for the ANS service api
+  - url: endpoint of the ANS service
+  - user: for the ANS service API
+  - tokenURL (optional): used for other auth methods
 
-As we see the command expect to specify parameters for: 
-- data 
-- password 
-- url 
-- user 
-- tokenURL (optional) 
-
-Therefore it is needed to add the following Input Keys from the `ANSUserInput` we already have created from the previous steps. 
-
-`ANSClientID` --> (string) Default Value: key client_id from input ANSUserInput
-`ANSClientSecret` --> (string / sensitive) Default Value: key client_secret from input ANSUserInput
-`url` --> value from ANS service key + `/cf/producer/v1/resource-events`
-
-- The data object for the custom event that is to be produced by the SAP Automation Pilot in case the condition is met:  
-`{ "eventType": "CUSTOM-ALERT", "severity": "WARNING", "category": "ALERT", "subject": "Alert Sent by SAP Automation Pilot: SAPUI5 Web App Is Not Accessible", "body": "IMPORTANT! SAPUI5 Web App cannot be accessed by the Automation Pilot health check request.", "resource": { "resourceName": "App #2", "resourceType": "application" } } `
+  Therefore it is needed to add the following Input Keys from the `ANSUserInput` we already have created from the previous steps. 
+  - `ANSClientID` --> (string) Default Value: key client_id from input ANSUserInput
+  - `ANSClientSecret` --> (string / sensitive) Default Value: key client_secret from input ANSUserInput
+  - `url` --> value from ANS service key + `/cf/producer/v1/resource-events`
+  - The data object for the custom event that is to be produced by the SAP Automation Pilot in case the condition is met:  
+    ```json 
+    { "eventType": "CUSTOM-ALERT", "severity": "WARNING", "category": "ALERT", "subject": "Alert Sent by SAP Automation Pilot: SAPUI5 Web App Is Not Accessible", "body": "IMPORTANT! SAPUI5 Web App cannot be accessed by the Automation Pilot health check request.", "resource": { "resourceName": "App #2", "resourceType": "application" } }
+    ```
 
 Expected result should like this setup: 
 <br>![](/exercises/1/images/01_05_13.png)
 
-- Conditions within the SAP Automation Pilot which will fire the custom event
+- Condition of that executor to fire only when the response from our app was not 200
 <br>![](/exercises/1/images/01_06.png)
 
-- The regular and repetitive health-checks calls are performed via the Automation Pilot built-in [job scheduler](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/96863a2380d24ba4bab0145bbd78e411.html), currently set to execute the command in question each 5 mins.  
+- Scheduled, repetitive or one-time command executions can be set up via the SAP Automation Pilot's built-in [job scheduler](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/96863a2380d24ba4bab0145bbd78e411.html). Set a schedule to execute the command in question each 5 minutes.  
 <br>![](/exercises/1/images/01_07.png)
 
-**3. SAP Alert Notification service subscription setup**
-- Condition is setup based on the event type received as shown underneath:   
+**3. SAP Alert Notification service notification subscription**
+<br>Create a new subscriptions for the notifications fired by our scheduled Automation Pilot command
+- Setup a condition, based on the event type received as shown underneath:   
 <br>![](/exercises/1/images/01_08.png)
 
-- The expected action is configured to fire an alert email:
+- The expected action is configured to send email
+Note: if this is the first time you'd be receiving email notifications via ANS you'd receive an email to confirm such deliveries first.
 <br>![](/exercises/1/images/01_09.png)
 
 **4. Expected result**
@@ -205,5 +224,5 @@ After completing these steps you will have created a health status check solutio
 ## Summary
 You've now have a simple app running on BTP CloudFoundry for which we have a health check monitoring and alerting. 
 
-Continue to - [Exercise 3 - HANA Cloud Monitoring and Automated Remediations](../2/README.md)
+Continue to - [Exercise 3 - HANA Cloud Monitoring and Automated Remediations](../3/README.md)
 
