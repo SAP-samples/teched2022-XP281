@@ -30,91 +30,72 @@ Then you shall see the dev space is in status `STARTING`. Wait until it is in st
 8. The SAP Fiori dev space opens and the Welcome tab appears.
 <br>![](/exercises/0/images/ex0_6.png)
 
-
 9. Connect to a Cloud Foundry endpoint
-You will need to log on to Cloud Foundry. To do that, start the command palette from the menu **View > Command Palette**, search for `cf:login`, and select the command `CF:Login to Cloud Foundry`.
-<br>![](/exercises/0/images/ex0_7.png)
+<br>You will need to log on to Cloud Foundry. To do that, start the command palette from the menu **View > Command Palette**, search for `cf:login`, and select the command `CF:Login to Cloud Foundry`.
+<br>![]/exercises/0/images/ex0_7.png)
+<br>Then, you shall enter the Cloud Foundry endpoint you want to use. Enter your email and your password to proceed.
+<br>![]/exercises/0/images/ex0_8.png)
+<br>Select the Cloud Foundry Organization and space you want use.<br> You will see messages in the lower right hand corner indicating that you are connected to the endpoint once these prompts have been answered.
+<br>![]/exercises/0/images/ex0_9.png)
 
-Then, you shall enter the Cloud Foundry endpoint you want to use. Enter your email and your password to proceed.
-<br>![](/exercises/0/images/ex0_8.png)
-TODO: screenshot
-
-Select the Cloud Foundry Organization and space you want use. You will see messages in the lower right hand corner indicating that you are connected to the endpoint once these prompts have been answered.
-<br>![](/exercises/0/images/ex0_9.png)
-TODO: screenshot
 
 10. Create your simple UI5 Cloud app 
-SAP Fiori tools includes an Application Generator that provides a wizard-style approach for creating applications.
-
-To launch the Application Generator, start the command palette from the menu item **View > Command Palette**, search for `fiori generator`, and select the command Fiori: Open Application Generator
-
-Specify the application type SAPUI5 freestyle and the floor plan `SAPUI5 Application` and go to the **Next** screen.
-<br>![](/exercises/0/images/ex0_10.png)
-
-Specify the Data Source as `None` and click on the **Next** button. 
-<br>![](/exercises/0/images/ex0_11.png)
-_**NOTE** Considering this is going to be a static UI5 app - we won't pick up a Data Source at that point. _
-
-Keep `View1` within the **View name** entity selection field and click on the **Next** button. 
-<br>![](/exercises/0/images/ex0_12.png)
-
-Withi the Project Attributtes configuration please fill in the data as shown below and click on the **Finish** button. 
-<br>![](/exercises/0/images/ex0_13.png)
-
-Then, you will see that dependencies are in a process of installation
-<br>![](/exercises/0/images/ex0_14.png)
-TODO: Screenshot
-
-Once, created , we can see the codebase for our application. 
-<br>![](/exercises/0/images/ex0_15.png)
+<br>SAP Fiori tools includes an Application Generator that provides a wizard-style approach for creating applications.
+<br>To launch the Application Generator, start the command palette from the menu item **View > Command Palette**, search for `fiori generator`, and select the command Fiori: Open Application Generator
+<br>Specify the application type SAPUI5 freestyle and the floor plan `SAPUI5 Application` and go to the **Next** screen.
+<br>![]/exercises/0/images/ex0_10.png)
+<br>Specify the Data Source as `None` and click on the **Next** button. 
+<br>![]/exercises/0/images/ex0_11.png)
+_**NOTE** Considering this is going to be a static UI5 app - we won't pick up a Data Source at that point.
+<br>Keep `View1` within the **View name** entity selection field and click on the **Next** button. 
+<br>![]/exercises/0/images/ex0_12.png)
+<br>Within the Project Attributtes configuration please fill in the data as shown below and click on the **Finish** button. 
+<br>![]/exercises/0/images/ex0_13.png)
+<br>Then, you will see that dependencies are in a process of installation
+<br>![]/exercises/0/images/ex0_14.png)
+<br>Once, created , we can see the codebase for our application. 
+<br>![]/exercises/0/images/ex0_15.png)
 
 11. Modify the homepage of your application 
-We can modify the homepage of our application by simply using the SAP Business Application Studio built-in Layout Editor feature. In order to do so, please navigatre to your app view at `View1.view.xml` 
-<br>![](/exercises/0/images/ex0_16.png)
-
-Open the view with the  Layout Editor. 
-<br>![](/exercises/0/images/ex0_17.png)
-
-By using the available controls we can add the following elements just to customise the homepage of our app: 
+<br>We can modify the homepage of our application by simply using the SAP Business Application Studio built-in Layout Editor feature. In order to do so, please navigatre to your app view at `View1.view.xml` 
+<br>![]/exercises/0/images/ex0_16.png)
+<br>Open the view with the  Layout Editor. 
+<br>![]/exercises/0/images/ex0_17.png)
+<br>By using the available controls we can add the following elements just to customise the homepage of our app: 
 - icon 
 - text area 
 <br>![](/exercises/0/images/ex0_18.png)
 
 12. Add deplopyment configuration
-
-Start the command palette from the menu item **View > Command Palette**, search for `Run task` and select Task: Run Taks , then find and execute the task: `npm: deploy-config`
+<br>Start the command palette from the menu item **View > Command Palette**, search for `Run task` and select Task: Run Taks , then find and execute the task: `npm: deploy-config`
 <br>![](/exercises/0/images/ex0_19.png)
-
-Within the Terminal where the task output is printed, using the ↑, ↓ and ⏎ keys choose that you want to add a deployment configrarion for a `CloudFoundry` setup. For destination you can pick-up `None` and confirm with `Y` the application addition to a `managed application router`
+<br>Within the Terminal where the task output is printed, using the ↑, ↓ and ⏎ keys choose that you want to add a deployment configrarion for a `CloudFoundry` setup. For destination you can pick-up `None` and confirm with `Y` the application addition to a `managed application router`
 <br>![](/exercises/0/images/ex0_20.png)
-
-At executing the command you will see that the following assets have been created: 
-`Updating mta.yaml with module information
+<br>At executing the command you will see that the following assets have been created:
+```
+Updating mta.yaml with module information
    create xs-security.json
    create xs-app.json
-   create ui5-deploy.yaml` 
+   create ui5-deploy.yaml
+``` 
 
 13. Build the project
-
-Build (aka package) the project to a mtar archive to deploy it to Cloud Foundry. Right-click on the `mta.yaml` file and select Build MTA Project to trigger this process.
+<br>Build (aka package) the project to a mtar archive to deploy it to Cloud Foundry. Right-click on the `mta.yaml` file and select Build MTA Project to trigger this process.
 <br>![](/exercises/0/images/ex0_21.png)
-
-Once the build is complete, you can see a message in the log. You can now find the generated `mtar` archive in the project tree under `mta_archives`.
-<br>![](images/0_22.png)
+<br>Once the build is complete, you can see a message in the log. You can now find the generated `mtar` archive in the project tree under `mta_archives`.
+<br>![](/exercises/0/images/ex0_22.png)
 
 14. Deploy your project 
-Access the Applicaiton info page: from the Command Palette from menu **View > Command Palette**, type Application Info, and select `Fiori: Open Application Info`. Click on the **Deploy Application** tile to start deployment process
+<br>Access the Applicaiton info page: from the Command Palette from menu **View > Command Palette**, type Application Info, and select `Fiori: Open Application Info`. Click on the **Deploy Application** tile to start deployment process
 <br>![](/exercises/0/images/ex0_23.png)
-
-The deployment process has been just started.
+<br>The deployment process has been just started.
 <br>![](/exercises/0/images/ex0_24.png)
-
-The deployment process has been  finished.
+<br>The deployment process has been  finished.
 <br>![](/exercises/0/images/ex0_25.png)
 
-15. Lookup the deployed html5 application
-Navigate to your BTP Trial sub-account and click on the HMTL5 Applicaiton tab. If you have not yet subscribed to SAP Launchpad Service or another service utilizing html5 applications, do so:
 
+15. Lookup the deployed html5 application
+<br>Navigate to your BTP Trial sub-account and click on the HMTL5 Applicaiton tab. If you have not yet subscribed to SAP Launchpad Service or another service utilizing html5 applications, do so:
 - Click on the SAP Launchpad Service `Subscribe` button
 <br>![](/exercises/0/images/ex0_28.png)
 - Click on the `Create` button in the Launchpad Service page
@@ -122,10 +103,10 @@ Navigate to your BTP Trial sub-account and click on the HMTL5 Applicaiton tab. I
 - Choose the `standard` Subscription plan
 <br>![](/exercises/0/images/ex0_30.png)
 
-
 16. Access your application over BTP cockipt 
-In the HTML5 Applications tab, click on the application you just have deployed.
+<br>In the HTML5 Applications tab, click on the application you just have deployed.
 <br>![](/exercises/0/images/ex0_26.png)
+
 
 Well done - you will be landing to your app home page!
 <br>![](/exercises/0/images/ex0_27.png)
