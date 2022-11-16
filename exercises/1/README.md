@@ -153,7 +153,8 @@ NOTE: adding the html code underneath as well:
 <br>![](/exercises/1/images/01_05_12.png)
 
 - To set up a health-check command you can use the command [HttpRequest already provided by the SAP Automation Pilot](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6ce1e04b7812411db04b80ea769ef46e.html), where you can modify the method and the URL.  
-<br>![](/exercises/1/images/01_05.png)
+<br>![](/exercises/1/images/01_05_33.png)
+
 <br>To do so, access the command provided within the respective Provided Catalog by the SAP Automation Pilot - `HTTP Operations (http-sapcp)`, open it and then click on the **"Clone"** button. You can give a meaningful name to the newly created command, i.e. `AppHealhCheck`. 
 
 - Within the **Input Keys** section use the input keys that you have created in the previous steps and specify the input keys as it follows: 
