@@ -83,31 +83,96 @@ There will be two possible automated actions initiated by the Automation Pilot. 
 _**NOTE:** for further reference please find out [this tutorial prepared by Dan van Leeuwen](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html)._
 
 **Automated action #1:** Collect data about long-running statment
-We are going to use the SQL Plan Cach in HANA Cloud so that SAP Automation Pilot is to get further details about the long-running statment by performing a query using the `ExecuteHanaCloudSqlStatement` command and provide further detaiils back to the Alert Notification service. 
+We are going to use the SQL Active Statements in HANA Cloud so that SAP Automation Pilot is capable to get further details about the long-running statment by performing a query using the `ExecuteHanaCloudSqlStatement` command and provide further detaiils back to the Alert Notification service. 
 
-The query DB will be based on the `STATEMENT_HASH` and shall look like this one: 
+The query DB will be based on this SQL Select: 
 ```
-SELECT *
-FROM M_SQL_PLAN_CACHE
-WHERE STATEMENT_HASH = 'bcd01a3e39ba4a82758ea300fd8d5a9a';
+SELECT TOP 1000 DISTINCT  
+	"CONNECTION_ID",
+	"STATEMENT_ID",
+	SUM("ALLOCATED_MEMORY_SIZE") AS "SUM_ALLOCATED_MEMORY_SIZE"
+FROM "SYS"."M_ACTIVE_STATEMENTS"
+GROUP BY "CONNECTION_ID", "STATEMENT_ID"
+ORDER BY "CONNECTION_ID" ASC, "STATEMENT_ID" ASC
 
 ```
-NOTE: The `STATEMENT_HASH` is known to the Automation Pilot as it is available within the alert sent by the Alert Notification service, i.e. 
+In order to achieve it we need to add an executor `SQLStatement` 
+Provided command used: `sql-sapcp:ExecuteHanaCloudSqlStatement:1`
 
+Command parameters:
+connectionUrl —> `jdbc:sap://$(.scriptInput.host):$(.scriptInput.port)`
+statement —> 
 ```
-Event Body:
-Identifies long-running SQL statements.
-This statement has been running for 281 seconds, Statment Hash: bcd01a3e39ba4a82758ea300fd8d5a9a, Transaction ID: 315, client PID: 170, thread ID: 3554, statement ID: 890320950785270.
+SELECT TOP 1000 DISTINCT  
+	"CONNECTION_ID",
+	"STATEMENT_ID",
+	SUM("ALLOCATED_MEMORY_SIZE") AS "SUM_ALLOCATED_MEMORY_SIZE"
+FROM "SYS"."M_ACTIVE_STATEMENTS"
+GROUP BY "CONNECTION_ID", "STATEMENT_ID"
+ORDER BY "CONNECTION_ID" ASC, "STATEMENT_ID" ASC
 ```
-<br>![](/exercises/2/images/02_13.png)
+password —> `$(.scriptInput.password)`
+resultRowFormat —> `OBJECT` 
+resultTransformer —> `toArray[0]`
+user —> `$(.scriptInput.user)` 
 
-Plus we can specify the values for the SQL Statement: 
-<br>![](/exercises/2/images/02_14.png)
+<br>![](/exercises/2/images/02_12_1.png)
+
+
+Moreover, we need to add an executor `QueryDB` 
+Provided command used: `scripts-sapcp:ExecuteScript:2`
+
+script —> 
+```
+#!/usr/bin/env python3
+
+import sys, json
+
+input = sys.stdin.readline()
+rows = json.loads(input)
+print(rows)
+```
+stdin (sensitive string) —> `$(.SQLStatement.output.result)`
+
+<br>![](/exercises/2/images/02_12_2.png)
+
+Add Output Values —> `checkResult`
+Configure checkResult string as it follows: `$(.QueryDB.output.output[0])` 
+
+Run the command and within the output result you should be able to find results similar like this one: 
+```
+checkResult:[{'CONNECTION_ID': 205558, 'STATEMENT_ID': '882864887567552', 'SUM_ALLOCATED_MEMORY_SIZE': 7008}]
+```
+
+
+Add a new executor `NotifyANS`
+
+Alias —> `NotifyANS`
+Provided command —> monitoring-sapcp:SendAlertNotificationServiceEvent:1
+
+Parameters added to the command: 
+
+data —> 
+```
+{ "eventType": "HANA-AutoPiCustom", "severity": "WARNING", "category": "ALERT", "subject": "Alert Sent by SAP Automation Pilot", "body": "CONNECTION_ID: $(.SQLStatement.output.result|toArray[0]["CONNECTION_ID"]), STATEMENT_ID:$(.SQLStatement.output.result|toArray[0]["STATEMENT_ID"]), SUM_ALLOCATED_MEMORY_SIZE:$(.SQLStatement.output.result|toArray[0]["SUM_ALLOCATED_MEMORY_SIZE"])", "resource": { "resourceName": "HANA Cloud", "resourceType": "HANA Cloud Alerts" } }
+```
+
+password —> `$(.execution.input.ANSClientSecret)`
+
+url —> https://clm-sl-ans-live-ans-service-api.cfapps.us10.hana.ondemand.com/cf/producer/v1/resource-events (NOTE: check your specific URL from the service key created within the Alert Notification service and add to it also the Producer API endpoint: ../cf/producer/v1/resource-events )
+
+user —> $(.execution.input.ANSClientID)
+
+The final command output should similar to this one: 
+
+<br>![](/exercises/2/images/02_12_3.png)
+
+
 
 _Expected result_
 
-The outup (as a result) is further processed and forward to the Alert Notification service so the Ops Team can automatically collect the needed information needed for debugging and further investigations.
-
+The outup (as a result) is further processed and forward to the Alert Notification service so the Ops Team can automatically collect the needed information needed for debugging and further investigations. See an example of an alert provided by the Alert Notification service to MS Team including data for debugging long-running statements. 
+<br>![](/exercises/2/images/02_12_4.png)
 
 **Automated action #2:** Disconnecting the session of a long-running statment
 Following the same approach as described in Automated action #1 and already being able to identify the `CONNECTION_ID` for the long-running statement, the Automation Plot will execute an SQL statement to disconnect the related session, i.e. 
