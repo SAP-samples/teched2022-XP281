@@ -28,6 +28,11 @@ During the workshop itself there will be two main excercises related to the moni
 - [Exercise 2 - Cloud Application Monitoring with Alert Notificaiton service and Automation Pilot](exercises/1/)
 - [Exercise 3 - HANA Cloud monitoring and automated remediation](exercises/2/)
 
+Note: If executing exercies in an SAP BTP Trial account with available subaccount regions US East (`us10`) and Singapore (`ap21`) 
+- Exercise 1 can be done both in subaccounts of regions us10 and and ap21
+- Exercise 2, the subscription of Automation Pilot should be done in an ap21 subaccount, and would be cross-consumed to operate over us10 as well as ap21.
+- Exercise 3, the subscriptions of Hana Cloud and Alert Notification should both be done in a us10 subaccount, while Automation Pilot remains in the ap21 subaccount.
+
 ## How to obtain support
 
 Support for the content in this repository is available during the actual time of the online session for which this content has been designed. Otherwise, you may request support by sending an email request to the lectors at: biser.simeonov@sap.com or dimitar.donchev@sap.com
