@@ -152,17 +152,18 @@ NOTE: adding the html code underneath as well:
 <br><br>The final result should look like this one:
 <br>![](/exercises/1/images/01_05_12.png)
 
-- To set up a health-check command please reuse the command [HttpRequest already provided by the SAP Automation Pilot](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6ce1e04b7812411db04b80ea769ef46e.html), where you can modify the method and the URL.  
+- To set up a health-check command you can use the command [HttpRequest already provided by the SAP Automation Pilot](https://help.sap.com/docs/AUTOMATION_PILOT/de3900c419f5492a8802274c17e07049/6ce1e04b7812411db04b80ea769ef46e.html), where you can modify the method and the URL.  
 <br>![](/exercises/1/images/01_05.png)
 <br>To do so, access the command provided within the respective Provided Catalog by the SAP Automation Pilot - `HTTP Operations (http-sapcp)`, open it and then click on the **"Clone"** button. You can give a meaningful name to the newly created command, i.e. `AppHealhCheck`. 
 
-- Within the **Input Keys** section use the input keys that you have created in the previous steps and specify the input keys for: 
+- Within the **Input Keys** section use the input keys that you have created in the previous steps and specify the input keys as it follows: 
   - `methond`
   - `url`
-  - `password`
-<br>See for reference the screenshots here: 
-<br>![](/exercises/1/images/01_05_5.png)
-<br>![](/exercises/1/images/01_05_6.png)
+  - `ANSClientID` --> Default Value: key client_id from input ANSUserInput (already created) 
+  - ANSClientSecret --> Default Value: key client_secret from input ANSUserInput (already created) 
+
+<br>You can remove the other Input Keys so you are left just with these four: 
+<br>![](/exercises/1/images/01_05_5_1.png)
 
 - Remove the Output Keys and keep just the one for `status`. 
 <br>![](/exercises/1/images/01_05_7.png)
@@ -178,16 +179,13 @@ NOTE: adding the html code underneath as well:
 - Add a new executor `notifyANS` of the `monitoring-sapcp:SendAlertNotificationServiceEvent:1` command which would send the notification event
 <br>As we see the command expect to specify parameters for: 
   - data: the notification event payload
-  - password: for the ANS service api
-  - url: endpoint of the ANS service
-  - user: for the ANS service API
-  - tokenURL (optional): used for other auth methods
+  - password: this is the `ANSClientSecret` already created in the Input Keys
+  - url: endpoint of the ANS service which is a value from ANS service key + `/cf/producer/v1/resource-events`
+  - user: this is the `ANSClientID` already created in the Input Keys
+  - tokenURL (optional): used for other auth methods --> we can leave it empty
 
-  Therefore it is needed to add the following Input Keys from the `ANSUserInput` we already have created from the previous steps. 
-  - `ANSClientID` --> (string) Default Value: key client_id from input ANSUserInput
-  - `ANSClientSecret` --> (string / sensitive) Default Value: key client_secret from input ANSUserInput
-  - `url` --> value from ANS service key + `/cf/producer/v1/resource-events`
-  - The data object for the custom event that is to be produced by the SAP Automation Pilot in case the condition is met:  
+ NOTE: `data` object
+ The data object for the custom event that is to be produced by the SAP Automation Pilot in case the condition is met:  
     ```json 
     { "eventType": "CUSTOM-ALERT", "severity": "WARNING", "category": "ALERT", "subject": "Alert Sent by SAP Automation Pilot: SAPUI5 Web App Is Not Accessible", "body": "IMPORTANT! SAPUI5 Web App cannot be accessed by the Automation Pilot health check request.", "resource": { "resourceName": "cloudApp", "resourceType": "application" } }
     ```
