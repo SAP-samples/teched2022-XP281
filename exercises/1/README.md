@@ -166,7 +166,7 @@ NOTE: adding the html code underneath as well:
 <br>![](/exercises/1/images/01_05_5_1.png)
 
 - Remove the Output Keys and keep just the one for `status`. 
-<br>![](/exercises/1/images/01_05_7.png)
+<br>![](/exercises/1/images/01_05_7_1.png)
 
 - Add an **Executor** for the the command you just have cretead and use a command `http-sapcp:HttpRequest:1` and name this step `appHealthCheck`
 
