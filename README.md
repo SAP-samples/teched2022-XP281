@@ -1,3 +1,4 @@
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2022-XP281)](https://api.reuse.software/info/github.com/SAP-samples/teched2022-XP281)
 # XP281 - Monitoring and Ops Automation for Your Cloud Application and SAP HANA Cloud
 
 ## Description
