@@ -174,6 +174,17 @@ NOTE: adding the html code underneath as well:
   Keep the paramenters within the command as specified here: 
 <br>![](/exercises/1/images/01_05_8.png)
 
+On top of the parameters for `method` and `url` (as you have seen in the previous screenshot) it is also needed to modify the default values for the parameter `successResponseCodes`. That is needed as the command is from type "httpRequest" and therefore the default success response value value is set to "200". That will result in a failure of this command in any response which is not 200. Of course, we should modify and tweak the command so it fits in our use case. 
+
+To do so we need to follow these steps: 
+-- Click “edit” on the command parameters section 
+<br>![](/exercises/1/images/01_05_8_1.png)
+
+-- Within the popup “Update values” displayed, please navigate to the tab “Advanced” and from the “Success Response Codes” you can input a specific response code (i.e. 404) or a generic one (i.e. 4xx) . There is also a drop-down for a quick select on these. In our case let's pick up an array of: `2xx, 3xx, 4xx, 5xx`.  Once you are done with your selection, click on the “Update” button.
+<br>![](/exercises/1/images/01_05_8_2.png)
+
+-- Once these command values are updated, you can procceed to the next steps.
+
 - Access the **output** and change the Output Values for `status` (number) to: `$(.appHealthCheck.output.status)`
 <br>![](/exercises/1/images/01_05_9.png)
 
