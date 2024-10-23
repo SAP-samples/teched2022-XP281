@@ -81,6 +81,7 @@ Within this use case we will onboard SAP Automation Pilot to automated possible 
 There will be two possible automated actions initiated by the Automation Pilot. Both of them are based on features to execute SQL Commands and Create Custom Notifications with SAP Automation Pilot and SAP Alert Notification Service . 
 
 _**NOTE:** for further reference please find out [this tutorial prepared by Dan van Leeuwen](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html), see these specific steps:_
+
 [Step 4 - Forward results to the SAP Alert Notification Service](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html#c514a77f-12af-499b-a639-1f5ef66e86c1) which describes
 - How in SAP Alert Notification Service you can create a basic service key. Then, the service key will provide the URL and credentials for the SAP Automation Pilot to send notifications to the SAP Alert Notification Service.
 - How to trigger a command in SAP Automaton Pilot with the input collected by SAP Alert Notfiicaiton service;
