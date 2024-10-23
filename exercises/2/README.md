@@ -82,12 +82,12 @@ There will be two possible automated actions initiated by the Automation Pilot. 
 
 _**NOTE:** for further reference please find out [this tutorial prepared by Dan van Leeuwen](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html), see these specific steps:_
 
-_[Step 4 - Forward results to the SAP Alert Notification Service](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html#c514a77f-12af-499b-a639-1f5ef66e86c1) which describes
-- How in SAP Alert Notification Service you can create a basic service key. Then, the service key will provide the URL and credentials for the SAP Automation Pilot to send notifications to the SAP Alert Notification Service.
-- How to trigger a command in SAP Automaton Pilot with the input collected by SAP Alert Notfiicaiton service;
-_
-_[Step 5 - Send a notification when there are unassigned maintenance items](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html#3f5a1ba7-9ab1-45a5-a34c-f0a2235c8b57) - describing how to setup a new subsription in SAP Alert Notfiication service. 
-_
+_[Step 4 - Forward results to the SAP Alert Notification Service](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html#c514a77f-12af-499b-a639-1f5ef66e86c1) which describes:_
+_- How in SAP Alert Notification Service you can create a basic service key. Then, the service key will provide the URL and credentials for the SAP Automation Pilot to send notifications to the SAP Alert Notification Service._
+_- How to trigger a command in SAP Automaton Pilot with the input collected by SAP Alert Notfiicaiton service._
+
+_[Step 5 - Send a notification when there are unassigned maintenance items](https://developers.sap.com/tutorials/hana-cloud-alerts-custom.html#3f5a1ba7-9ab1-45a5-a34c-f0a2235c8b57) - describing how to setup a new subsription in SAP Alert Notfiication service._ 
+
 
 **Automated action #1:** Collect data about long-running statment
 We are going to use the SQL Active Statements in HANA Cloud so that SAP Automation Pilot is capable to get further details about the long-running statment by performing a query using the `ExecuteHanaCloudSqlStatement` command and provide further detaiils back to the Alert Notification service. 
