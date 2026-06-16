@@ -13,7 +13,7 @@ This session introduces attendees to some of the operations products within the 
 
 The main purpose of this workshop is to provide more insights and learn how to combine alerting capabilities from SAP Alert Notification service for SAP BTP with automation of ops tasks from SAP Automation Pilot service in order to cover two main use cases: 
 - business check about the application health status 
-- monitoring and automated remediation for your instance of SAP HANA Cloud
+- monitoring and automated remediation for your instance of SAP HANA Cloud.
 
 ## Requirements
 
